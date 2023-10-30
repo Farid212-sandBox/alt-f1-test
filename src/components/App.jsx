@@ -1,24 +1,30 @@
-import Card from "./Card";
+import Cards from "./Cards";
 import data from "../data/response.json";
-import { Container, Row, Col } from "react-bootstrap";
+import { Grid, Box, Typography } from "@mui/material";
+
 function App() {
   return (
-    <div>
-      <h1
-        style={{ textAlign: "center", marginTop: "5rem", marginBottom: "3rem" }}
+    <Box>
+      <Typography
+        textAlign={"center"}
+        mt={5}
+        mb={3}
+        sx={{
+          fontSize: { xs: "2.75rem", md: "5rem" },
+          fontWeight: { xs: 400, md: 700 },
+          textTransform: "uppercase",
+        }}
       >
         test alt-f1
-      </h1>
-      <Container>
-        <Row>
-          {data.map((el, i) => (
-            <Col key={i} xs={12} sm={6} md={3} style={{ margin: "2rem" }}>
-              <Card data={el} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </div>
+      </Typography>
+      <Grid container spacing={2}>
+        {data.map((el, i) => (
+          <Grid item key={i} xs={12} sm={6} md={3}>
+            <Cards data={el} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }
 
