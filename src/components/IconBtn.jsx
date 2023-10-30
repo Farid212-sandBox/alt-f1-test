@@ -10,7 +10,7 @@ const IconBtn = ({ icon, ...props }) => {
 };
 
 IconBtn.propTypes = {
-  icon: Proptypes.node,
+  icon: Proptypes.object,
 };
 
 export default IconBtn;
