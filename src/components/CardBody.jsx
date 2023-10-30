@@ -1,20 +1,23 @@
-import { Card } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { Typography, CardContent } from "@mui/material";
+import CardHeader from "./CardHeader";
 
-const CardBody = ({ title, text, ...props }) => {
+const CardBody = ({ data, ...props }) => {
   return (
-    <div {...props}>
-      <Card.Title>{title}</Card.Title>
-      <Card.Text style={{ lineHeight: "normal" }}>
-        {text.length > 200 ? `${text.substring(0, 200)}...` : text}
-      </Card.Text>
-    </div>
+    <CardContent {...props}>
+      <CardHeader data={data} />
+      <Typography gutterBottom variant="h5" component="div">
+        {data.title}
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        {`${data.description.substring(0, 200)}...`}
+      </Typography>
+    </CardContent>
   );
 };
 
 CardBody.propTypes = {
-  title: PropTypes.string,
-  text: PropTypes.string,
+  data: PropTypes.object,
 };
 
 export default CardBody;
