@@ -1,4 +1,4 @@
-import { Row, Col } from "react-bootstrap";
+import { Box, Grid } from "@mui/material";
 import {
   faArrowUpRightFromSquare as externalLink,
   faCheck as check,
@@ -11,16 +11,6 @@ import PropTypes from "prop-types";
 
 const CardFooter = ({ url, ...props }) => {
   const listIcons = [
-    {
-      icon: externalLink,
-      link: url,
-      style: {
-        color: "white",
-        backgroundColor: "#1c84c6",
-        borderColor: "#1c84c6",
-        borderRadius: "3px",
-      },
-    },
     {
       icon: check,
       style: {
@@ -62,9 +52,33 @@ const CardFooter = ({ url, ...props }) => {
     },
   ];
   return (
-    <Row style={{ marginTop: "15px" }} {...props}>
+    <Grid container spacing={1} {...props}>
+      <Grid
+        item
+        xs={2}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Box
+          component="span"
+          style={{
+            padding: ".375rem .75rem",
+            color: "white",
+            backgroundColor: "#1c84c6",
+            borderColor: "#1c84c6",
+            borderRadius: "3px",
+          }}
+          onClick={() => window.open(url)}
+        >
+          <FontAwesomeIcon icon={externalLink} />
+        </Box>
+      </Grid>
       {listIcons.map((el, i) => (
-        <Col
+        <Grid
+          item
           xs={2}
           key={i}
           style={{
@@ -74,13 +88,16 @@ const CardFooter = ({ url, ...props }) => {
           }}
         >
           {el.icon && (
-            <span style={{ padding: ".375rem .75rem", ...el.style }}>
+            <Box
+              component="span"
+              style={{ padding: ".375rem .75rem", ...el.style }}
+            >
               <FontAwesomeIcon icon={el.icon} />
-            </span>
+            </Box>
           )}
-        </Col>
+        </Grid>
       ))}
-    </Row>
+    </Grid>
   );
 };
 
